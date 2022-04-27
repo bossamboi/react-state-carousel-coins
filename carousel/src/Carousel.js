@@ -28,19 +28,39 @@ function Carousel({ photos, title }) {
 	function goBackward() {
 		setCurrCardIdx(currCardIdx - 1);
 	}
+	function setLeft() {
+		let style = {};
+		if (currCardIdx === 0) {
+			style.visibility = "hidden";
+		}
+		else {
+			style.visibility = "visible";
+		}
+		return style;
+	}
+	function setRight() {
+		let style = {};
+		if (currCardIdx === total-1) {
+			style.visibility = "hidden";
+		}
+		else {
+			style.visibility = "visible";
+		}
+		return style;
+	}
 
 	return (
 		<div className="Carousel">
 			<h1>{title}</h1>
 			<div className="Carousel-main">
-				<i className="fas fa-chevron-circle-left fa-2x" onClick={goBackward} />
+				<i className="fas fa-chevron-circle-left fa-2x" style={setLeft()}  onClick={goBackward} />
 				<Card
 					caption={currCard.caption}
 					src={currCard.src}
 					currNum={currCardIdx + 1}
 					totalNum={total}
 				/>
-				<i className="fas fa-chevron-circle-right fa-2x" onClick={goForward} />
+				<i className="fas fa-chevron-circle-right fa-2x" style={setRight()} onClick={goForward} />
 			</div>
 		</div>
 	);
